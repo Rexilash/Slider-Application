@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -36,13 +37,14 @@ class _SliderItselfState extends State<SliderItself> with SingleTickerProviderSt
   static const double minHeight = 150.0;
 
   double _opacityValue = 0.0;
-  double _sliderValue = 50.0;
+  double _sliderValue = clampDouble(50.0, 0, 100);
   double _previousSliderValue = 0.0;
 
   Image backgroundImage = Image.asset('assets/test-background-img.jpg');
 
   @override
   Widget build(BuildContext context) {
+
     double progress = (_sliderValue - sliderMin) / (sliderMax - sliderMin);
     double mutableHeightRange = barHeight - minHeight;
     double scaledMutableHeight = progress * mutableHeightRange;
@@ -155,13 +157,13 @@ class _SliderItselfState extends State<SliderItself> with SingleTickerProviderSt
                                     onChanged: (value) {
                                       setState(() {
                                         _sliderValue = value;
-                                        isMovingUp = (_sliderValue > _previousSliderValue && fillHeight >= 300);
-                                  
+                                        /* isMovingUp = (_sliderValue > _previousSliderValue && fillHeight >= 300);
+
                                         if (isMovingUp) {
                                           _opacityValue = 1.0;
                                         } else {
                                           _opacityValue = 0.0;
-                                        }
+                                        } */
                                         _previousSliderValue = _sliderValue;
                                       });
                                     },
@@ -178,6 +180,29 @@ class _SliderItselfState extends State<SliderItself> with SingleTickerProviderSt
                           ),
                         ),
                       ),
+                      GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onVerticalDragUpdate: (details) {
+                          setState(() {
+                            if (details.delta.dy < 0 && _sliderValue < 100) {
+                              _sliderValue++;
+                              if (fillHeight >= 300) {
+                                _opacityValue = 1.0;
+                              }
+                            } else if (details.delta.dy > 0 && _sliderValue > 0) {
+                              _sliderValue--;
+                              _opacityValue = 0.0;
+                            }
+                          });
+                        },
+                        onVerticalDragEnd: (details) => setState(() {
+                          _opacityValue = 0.0;
+                        }),
+                        child: SizedBox(
+                          height: barHeight,
+                          width: barWidth,
+                        ),
+                      )
                     ],
                   ),
                 ),
