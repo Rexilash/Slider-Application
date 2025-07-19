@@ -38,7 +38,6 @@ class _SliderItselfState extends State<SliderItself> with SingleTickerProviderSt
 
   double _opacityValue = 0.0;
   double _sliderValue = clampDouble(50.0, 0, 100);
-  double _previousSliderValue = 0.0;
 
   Image backgroundImage = Image.asset('assets/test-background-img.jpg');
 
@@ -50,7 +49,7 @@ class _SliderItselfState extends State<SliderItself> with SingleTickerProviderSt
     double scaledMutableHeight = progress * mutableHeightRange;
     double calculatedFillHeight = minHeight + scaledMutableHeight;
     double fillHeight = math.min(calculatedFillHeight, barHeight);
-    bool isMovingUp = false;
+
 
     return Scaffold(
       body: Center(
@@ -154,25 +153,7 @@ class _SliderItselfState extends State<SliderItself> with SingleTickerProviderSt
                                     value: _sliderValue,
                                     min: sliderMin,
                                     max: sliderMax,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _sliderValue = value;
-                                        /* isMovingUp = (_sliderValue > _previousSliderValue && fillHeight >= 300);
-
-                                        if (isMovingUp) {
-                                          _opacityValue = 1.0;
-                                        } else {
-                                          _opacityValue = 0.0;
-                                        } */
-                                        _previousSliderValue = _sliderValue;
-                                      });
-                                    },
-                                    onChangeEnd: (value) { 
-                                      setState(() {
-                                        _opacityValue = 0.0;
-                                      });
-                                      _previousSliderValue = _sliderValue;
-                                    }
+                                    onChanged: (value) {},
                                   ),
                                 ),
                               ),
@@ -180,27 +161,32 @@ class _SliderItselfState extends State<SliderItself> with SingleTickerProviderSt
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onVerticalDragUpdate: (details) {
-                          setState(() {
-                            if (details.delta.dy < 0 && _sliderValue < 100) {
-                              _sliderValue++;
-                              if (fillHeight >= 300) {
-                                _opacityValue = 1.0;
+                      Center(
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onVerticalDragUpdate: (details) {
+                            setState(() {
+                              double internalValue = _sliderValue;
+                              if (details.delta.dy < 0 && _sliderValue <= 100) {
+                                internalValue++;
+                                _sliderValue = internalValue.clamp(sliderMin, sliderMax);
+                                if (fillHeight >= 300) {
+                                  _opacityValue = 1.0;
+                                }
+                              } else if (details.delta.dy > 0 && _sliderValue >= 0) {
+                                internalValue--;
+                                _sliderValue = internalValue.clamp(sliderMin, sliderMax);
+                                _opacityValue = 0.0;
                               }
-                            } else if (details.delta.dy > 0 && _sliderValue > 0) {
-                              _sliderValue--;
-                              _opacityValue = 0.0;
-                            }
-                          });
-                        },
-                        onVerticalDragEnd: (details) => setState(() {
-                          _opacityValue = 0.0;
-                        }),
-                        child: SizedBox(
-                          height: barHeight,
-                          width: barWidth,
+                            });
+                          },
+                          onVerticalDragEnd: (details) => setState(() {
+                            _opacityValue = 0.0;
+                          }),
+                          child: SizedBox(
+                            height: barHeight,
+                            width: barWidth,
+                          ),
                         ),
                       )
                     ],
@@ -218,19 +204,22 @@ class _SliderItselfState extends State<SliderItself> with SingleTickerProviderSt
 class TrailCirclePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final centerPoint1 = Offset(size.width / 2, 180);
-    final centerPoint2 = Offset(size.width / 2, 250);
+    final centerPoint1 = Offset(size.width / 2, 160);
+    final centerPoint2 = Offset(size.width / 2, 210);
+    final centerPoint3 = Offset(size.width / 2, 245);
 
-    final double circleRadius1 = 25;
-    final double circleRadius2 = 15;
+    final double circleRadius1 = 20;
+    final double circleRadius2 = 10;
+    final double circleRadius3 = 5;
 
     final Paint circlePaint = Paint()
-      ..color = Colors.white.withAlpha(255)
+      ..color = Colors.white.withAlpha(127)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 5;
 
     canvas.drawCircle(centerPoint1, circleRadius1, circlePaint);
     canvas.drawCircle(centerPoint2, circleRadius2, circlePaint);
+    canvas.drawCircle(centerPoint3, circleRadius3, circlePaint);
   }
 
   @override
