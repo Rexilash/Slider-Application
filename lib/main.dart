@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slider/global_keys.dart';
 import 'package:slider/widgets/app_background.dart';
 import 'package:slider/widgets/slider_itself.dart';
 import 'package:slider/widgets/background_change_button.dart';
@@ -29,7 +30,7 @@ class AppDisplay extends StatelessWidget {
     return Container(
       child: Stack(
         children: [
-          AppBackground(),
+          AppBackground(key: appBackgroundStateKey),
           SliderItself(),
           Align(
             alignment: Alignment.centerRight,
