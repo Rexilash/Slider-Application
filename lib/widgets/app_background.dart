@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppBackground extends StatefulWidget {
   const AppBackground({super.key});
@@ -14,25 +15,53 @@ class AppBackground extends StatefulWidget {
 
 class AppBackgroundState extends State<AppBackground> {
   File? _backgroundImage;
+  String? _backgroundImagePath;
+
+  static const String _imagePath = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadImagePath();
+  }
+
+  Future<void> _loadImagePath() async {
+    final userPrefs = await SharedPreferences.getInstance();
+    final savedPath = userPrefs.getString(_imagePath);
+    if (savedPath != null && savedPath.isNotEmpty) {
+      if (await File(savedPath).exists()) {
+        _backgroundImagePath = savedPath;
+        setState(() {
+          _backgroundImage = File(savedPath);
+        });
+      } else {
+        await userPrefs.remove(_imagePath);
+      }
+    }
+  }
+
+  Future<void> _saveImagePath(String path) async {
+    final userPrefs = await SharedPreferences.getInstance();
+    await userPrefs.setString(_imagePath, path);
+  }
 
   Future<void> pickImageFile() async {
-    FilePickerResult? imageResult;
-
     try {
-      imageResult = await FilePicker.platform.pickFiles(
+      final imageResult = await FilePicker.platform.pickFiles(
         type: FileType.image,
         allowMultiple: false,
       );
 
       if (imageResult != null) {
-        PlatformFile selectedPlatformFile = imageResult.files.first;
+        final selectedPlatformFile = imageResult.files.first;
+        final newPath = selectedPlatformFile.path;
 
-        if (selectedPlatformFile.path != null) {
-          File imageSetAsBackground = File(selectedPlatformFile.path!);
-
+        if (newPath != null) {
+          _backgroundImagePath = newPath;
           setState(() {
-            _backgroundImage = imageSetAsBackground;
+            _backgroundImage = File(newPath);
           });
+          await _saveImagePath(newPath);
         } else {
 
         }
@@ -48,17 +77,17 @@ class AppBackgroundState extends State<AppBackground> {
 
   @override
   Widget build(BuildContext context) {
-    Widget BackgroundWidget;
+    Widget backgroundWidget;
 
     if (_backgroundImage != null) {
-      BackgroundWidget = Image.file(
-        _backgroundImage!,
+      backgroundWidget = Image.file(
+        File(_backgroundImagePath!),
         fit: BoxFit.cover,
         height: double.infinity,
         width: double.infinity,
       );
     } else {
-      BackgroundWidget = Image.asset(
+      backgroundWidget = Image.asset(
         './assets/test-background-img.jpg',
         fit: BoxFit.cover,
         height: double.infinity,
@@ -67,7 +96,7 @@ class AppBackgroundState extends State<AppBackground> {
     }
 
     return Container(
-      child: BackgroundWidget
+      child: backgroundWidget
     );
   }
 }
