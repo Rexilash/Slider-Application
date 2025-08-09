@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:slider/widgets/app_background.dart';
 import 'package:slider/widgets/painters/image_button_painter.dart';
-import 'package:slider/global_keys.dart';
 
 class BackgroundChangeButton extends StatefulWidget {
   const BackgroundChangeButton({super.key});
@@ -121,7 +121,7 @@ class _BackgroundChangeButtonState extends State<BackgroundChangeButton> with Si
     } else if (_controller.status == AnimationStatus.completed && _isCircleButtonActive) {
       _resetTimer();
       _triggerTimer();
-      appBackgroundStateKey.currentState?.pickImageFile();
+      AppBackgroundState().pickImageFile();
     }
   }
 
