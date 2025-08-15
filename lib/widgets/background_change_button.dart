@@ -112,7 +112,20 @@ class _BackgroundChangeButtonState extends State<BackgroundChangeButton> with Si
     _inactivityTimer = null;
   }
 
-  void _handleTap() {
+  void _handleTapX() {
+    if (_controller.status == AnimationStatus.dismissed) {
+      _closeTheCircleButton();
+      _controller.forward();
+      debugPrint('Test tap 1');
+      _triggerTimer();
+    } else if (_controller.status == AnimationStatus.completed && _isCircleButtonActive) {
+      _resetTimer();
+      _triggerTimer();
+      
+    }
+  }
+
+  void _handleTapO() {
     if (_controller.status == AnimationStatus.dismissed) {
       _closeTheCircleButton();
       _controller.forward();
@@ -125,36 +138,105 @@ class _BackgroundChangeButtonState extends State<BackgroundChangeButton> with Si
     }
   }
 
+  void _handleTap3() {
+    if (_controller.status == AnimationStatus.dismissed) {
+      _closeTheCircleButton();
+      _controller.forward();
+      debugPrint('Test tap 1');
+      _triggerTimer();
+    } else if (_controller.status == AnimationStatus.completed && _isCircleButtonActive) {
+      _resetTimer();
+      _triggerTimer();
+      
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: containerHeight,
+      height: containerHeight + containerHeight + containerHeight,
       width: containerWidth,
-      child: Stack(
+      child: Column(
         children: [
-          Container(
-            height: containerHeight,
-            width: containerWidth,
-            child: CustomPaint(
-              size: Size(containerWidth, containerHeight),
-              painter: ImageButton(
-                centerPosition: _animatedCircleButtonOffset,
-                buttonRadius: _animatedCircleButtonRadius,
-                circleOpacity: _animatedCircleButtonOpacity.toInt()
+          Stack(
+            children: [
+              Container(
+                height: containerHeight,
+                width: containerWidth,
+                child: CustomPaint(
+                  size: Size(containerWidth, containerHeight),
+                  painter: ImageButton(
+                    centerPosition: _animatedCircleButtonOffset,
+                    buttonRadius: _animatedCircleButtonRadius,
+                    circleOpacity: _animatedCircleButtonOpacity.toInt()
+                  ),
+                )
               ),
-            )
-          ),
-          GestureDetector(
-            onTap: _handleTap,
-            child: Container(
-              height: containerHeight,
-              width: containerHeight, // to make this a square, intentional choice.
-              decoration: BoxDecoration(
-                border: _debugBorderValue
+              GestureDetector(
+                onTap: _handleTapX,
+                child: Container(
+                  height: containerHeight,
+                  width: containerHeight, // to make this a square, intentional choice.
+                  decoration: BoxDecoration(
+                    border: _debugBorderValue
+                  ),
+                ),
               ),
-            ),
+            ]
           ),
-        ]
+          Stack(
+            children: [
+              Container(
+                height: containerHeight,
+                width: containerWidth,
+                child: CustomPaint(
+                  size: Size(containerWidth, containerHeight),
+                  painter: ImageButton(
+                    centerPosition: _animatedCircleButtonOffset,
+                    buttonRadius: _animatedCircleButtonRadius,
+                    circleOpacity: _animatedCircleButtonOpacity.toInt()
+                  ),
+                )
+              ),
+              GestureDetector(
+                onTap: _handleTapO,
+                child: Container(
+                  height: containerHeight,
+                  width: containerHeight, // to make this a square, intentional choice.
+                  decoration: BoxDecoration(
+                    border: _debugBorderValue
+                  ),
+                ),
+              ),
+            ]
+          ),
+          Stack(
+            children: [
+              Container(
+                height: containerHeight,
+                width: containerWidth,
+                child: CustomPaint(
+                  size: Size(containerWidth, containerHeight),
+                  painter: ImageButton(
+                    centerPosition: _animatedCircleButtonOffset,
+                    buttonRadius: _animatedCircleButtonRadius,
+                    circleOpacity: _animatedCircleButtonOpacity.toInt()
+                  ),
+                )
+              ),
+              GestureDetector(
+                onTap: _handleTap3,
+                child: Container(
+                  height: containerHeight,
+                  width: containerHeight, // to make this a square, intentional choice.
+                  decoration: BoxDecoration(
+                    border: _debugBorderValue
+                  ),
+                ),
+              ),
+            ]
+          ),
+        ],
       )
     );
   }

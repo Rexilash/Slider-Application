@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:slider/widgets/slider_itself.dart';
 
 class BorderPainter extends CustomPainter {
+  Color topGradientColor;
+  Color bottomGradientColor;
+
+  BorderPainter({
+    required this.topGradientColor,
+    required this.bottomGradientColor
+  });
+
   @override
   void paint(Canvas canvas, Size size) {
     final Rect rect = Offset.zero & size;
@@ -10,7 +18,7 @@ class BorderPainter extends CustomPainter {
     final Gradient myGradient = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
-      colors: [Colors.pink, Colors.cyan],
+      colors: [topGradientColor, bottomGradientColor],
     );
 
     final Paint gradientFillPaint = Paint()
@@ -22,7 +30,7 @@ class BorderPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter old) {
-    return false;
+  bool shouldRepaint(covariant BorderPainter oldDelegate) {
+    return oldDelegate.topGradientColor != topGradientColor || oldDelegate.bottomGradientColor != bottomGradientColor;
   }
 }
