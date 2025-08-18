@@ -121,7 +121,7 @@ class _BackgroundChangeButtonState extends State<BackgroundChangeButton> with Si
     } else if (_controller.status == AnimationStatus.completed && _isCircleButtonActive) {
       _resetTimer();
       _triggerTimer();
-      
+      blurScreenStateKey.currentState?.blurDialog();
     }
   }
 
@@ -147,7 +147,7 @@ class _BackgroundChangeButtonState extends State<BackgroundChangeButton> with Si
     } else if (_controller.status == AnimationStatus.completed && _isCircleButtonActive) {
       _resetTimer();
       _triggerTimer();
-      
+      sliderItselfStateKey.currentState?.colorPicker();
     }
   }
 

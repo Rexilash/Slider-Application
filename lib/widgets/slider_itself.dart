@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math' as math;
 import 'package:slider/widgets/painters/trailing_circle_painter.dart';
 import 'package:slider/widgets/painters/border_painter.dart';
@@ -22,8 +23,8 @@ class SliderItselfState extends State<SliderItself> with SingleTickerProviderSta
   static const double sliderMax = 100.0;
   static const double minHeight = 150.0;
 
-  Color topGradientColor = Colors.pink;
-  Color bottomGradientColor = Colors.cyan;
+  Color _topGradientColor = Colors.pink;
+  Color _bottomGradientColor = Colors.cyan;
 
   double _opacityValue = 0.0;
   double _sliderValue = clampDouble(50.0, 0, 100);
@@ -85,8 +86,8 @@ class SliderItselfState extends State<SliderItself> with SingleTickerProviderSta
                                   begin: Alignment.bottomCenter,
                                   end: Alignment.topCenter,
                                   colors: [
-                                    bottomGradientColor,
-                                    topGradientColor,
+                                    _bottomGradientColor,
+                                    _topGradientColor,
                                   ]
                                 ),
                               ),
@@ -107,8 +108,8 @@ class SliderItselfState extends State<SliderItself> with SingleTickerProviderSta
                               child: CustomPaint(
                                 size: Size(barWidth, barHeight),
                                 painter: BorderPainter(
-                                  topGradientColor: topGradientColor,
-                                  bottomGradientColor: bottomGradientColor
+                                  topGradientColor: _topGradientColor,
+                                  bottomGradientColor: _bottomGradientColor
                                 )
                               ),
                             ),
@@ -186,9 +187,9 @@ class SliderItselfState extends State<SliderItself> with SingleTickerProviderSta
     );
   }
 
-  Future<void> _colorPicker() async {
-    Color pickingColorTop = topGradientColor;
-    Color pickingColorBottom = bottomGradientColor; 
+  Future<void> colorPicker() async {
+    Color pickingColorTop = _topGradientColor;
+    Color pickingColorBottom = _bottomGradientColor; 
     final Map<String, Color>? pickingColors = await showDialog<Map<String, Color>>(
       context: context,
       builder: (BuildContext context) {
@@ -230,9 +231,34 @@ class SliderItselfState extends State<SliderItself> with SingleTickerProviderSta
 
     if (pickingColors != null) {
       setState(() {
-        topGradientColor = pickingColors['top']!;
-        bottomGradientColor = pickingColors['bottom']!;
+        _topGradientColor = pickingColors['top']!;
+        _bottomGradientColor = pickingColors['bottom']!;
       });
+      _saveGradient();
     }
+  }
+
+  void initState() {
+    super.initState();
+    _loadGradient();
+  }
+
+  Future<void> _loadGradient() async {
+    final gradients = await SharedPreferences.getInstance();
+    
+    final loadedGradientTop = gradients.getInt('top') ?? Colors.pink.toARGB32();
+    final loadedGradientbottom = gradients.getInt('bottom') ?? Colors.cyan.toARGB32();
+
+    setState(() {
+      _topGradientColor = Color(loadedGradientTop);
+      _bottomGradientColor = Color(loadedGradientbottom);
+    });
+  }
+
+  Future<void> _saveGradient() async {
+    final gradients = await SharedPreferences.getInstance();
+
+    await gradients.setInt('top', _topGradientColor.toARGB32());
+    await gradients.setInt('bottom', _bottomGradientColor.toARGB32());
   }
 }
