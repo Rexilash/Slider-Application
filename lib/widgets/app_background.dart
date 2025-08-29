@@ -17,7 +17,7 @@ class AppBackgroundState extends State<AppBackground> {
   File? _backgroundImage;
   String? _backgroundImagePath;
 
-  static const String _imagePath = '';
+  final String _imagePath = 'background image';
 
   @override
   void initState() {
@@ -62,11 +62,7 @@ class AppBackgroundState extends State<AppBackground> {
             _backgroundImage = File(newPath);
           });
           await _saveImagePath(newPath);
-        } else {
-
         }
-      } else {
-
       }
     } catch (e) {
       if (kDebugMode) {

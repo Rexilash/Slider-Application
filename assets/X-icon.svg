@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="48"
+   height="48"
+   viewBox="0 0 12.7 12.7"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="X_icon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="11.502694"
+     inkscape:cx="23.472762"
+     inkscape:cy="21.516699"
+     inkscape:window-width="1402"
+     inkscape:window-height="891"
+     inkscape:window-x="384"
+     inkscape:window-y="70"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="powerstroke"
+       message=""
+       id="path-effect13"
+       is_visible="true"
+       lpeversion="1.3"
+       scale_width="1"
+       interpolator_type="CubicBezierJohan"
+       interpolator_beta="0.2"
+       start_linecap_type="zerowidth"
+       end_linecap_type="zerowidth"
+       offset_points="0,37.49"
+       linejoin_type="extrp_arc"
+       miter_limit="4"
+       not_jump="false"
+       sort_points="true" />
+    <inkscape:path-effect
+       effect="powerstroke"
+       message=""
+       id="path-effect11"
+       is_visible="true"
+       lpeversion="1.3"
+       scale_width="1"
+       interpolator_type="CubicBezierJohan"
+       interpolator_beta="0.2"
+       start_linecap_type="zerowidth"
+       end_linecap_type="zerowidth"
+       offset_points="1,37.49"
+       linejoin_type="extrp_arc"
+       miter_limit="4"
+       not_jump="false"
+       sort_points="true" />
+    <inkscape:path-effect
+       effect="skeletal"
+       id="path-effect10"
+       is_visible="true"
+       lpeversion="1"
+       pattern="M 0,4.9921382 C 0,2.2364779 2.2364779,0 4.9921382,0 c 2.7556604,0 4.9921383,2.2364779 4.9921383,4.9921382 0,2.7556604 -2.2364779,4.9921383 -4.9921383,4.9921383 C 2.2364779,9.9842765 0,7.7477986 0,4.9921382 Z"
+       copytype="single_stretched"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       normal_offset="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       hide_knot="false"
+       fuse_tolerance="0" />
+    <inkscape:path-effect
+       effect="skeletal"
+       id="path-effect9"
+       is_visible="true"
+       lpeversion="1"
+       pattern="M 0,4.9921382 C 0,2.2364779 2.2364779,0 4.9921382,0 c 2.7556604,0 4.9921383,2.2364779 4.9921383,4.9921382 0,2.7556604 -2.2364779,4.9921383 -4.9921383,4.9921383 C 2.2364779,9.9842765 0,7.7477986 0,4.9921382 Z"
+       copytype="single_stretched"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       normal_offset="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       hide_knot="false"
+       fuse_tolerance="0" />
+    <inkscape:path-effect
+       effect="fill_between_many"
+       method="bsplinespiro"
+       autoreverse="false"
+       close="false"
+       join="false"
+       linkedpaths="#path10,0,1"
+       id="path-effect12"
+       is_visible="true"
+       lpeversion="0" />
+    <inkscape:path-effect
+       effect="fill_between_many"
+       method="bsplinespiro"
+       autoreverse="false"
+       close="false"
+       join="false"
+       linkedpaths="#path12,0,1"
+       id="path-effect14"
+       is_visible="true"
+       lpeversion="0" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="rect14"
+       style="fill:#ffffff;stroke-width:0.0187788;fill-opacity:0.5"
+       d="M 0.99649182 0.98331984 C 0.74863797 0.73546599 0.40589214 0.58252011 0.026055251 0.58252011 L -0.00025545759 0.58282866 C -0.75992923 0.58282866 -1.3715735 1.1941691 -1.3715735 1.9538429 L -1.3714483 7.6132796 L -7.0322581 7.6880689 C -7.7919687 7.698074 -8.3952835 8.3176341 -8.3852785 9.0771389 L -8.3852405 9.1034478 C -8.3752355 9.8629527 -7.7554515 10.466342 -6.9957408 10.456337 L -1.3718385 10.382345 L -1.3717649 16.005973 C -1.3717649 16.765647 -0.76018396 17.377346 -0.00051018293 17.377346 L 0.026166479 17.377398 C 0.78584025 17.377398 1.3971186 16.765697 1.3971186 16.006023 L 1.3973572 10.345486 L 7.0570712 10.271075 C 7.8167819 10.26107 8.4204626 9.6418708 8.4104576 8.8823659 L 8.4100537 8.8556959 C 8.4000486 8.096191 7.7802646 7.492802 7.020554 7.5028072 L 1.3973826 7.5767897 L 1.39731 1.9538932 C 1.39731 1.5740563 1.2443457 1.2311737 0.99649182 0.98331984 z "
+       transform="matrix(0.71535047,-0.69876585,0.70608598,0.70812611,0,0)" />
+    <path
+       id="rect14-8-1"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.0162415"
+       d="M -0.76857103 1.2158594 C -0.58351648 1.0308048 -0.32783943 0.9163515 -0.044242698 0.9163515 L 0.065025868 0.91659905 C 0.63221933 0.91659905 1.0891071 1.3734567 1.0891071 1.9406502 L 1.0891237 7.8869312 L 7.0647999 7.80786 C 7.6320434 7.8003243 8.0832448 8.2509726 8.075709 8.8182161 L 8.0740097 8.9274976 C 8.0664739 9.4947411 7.6035057 9.9577391 7.0362622 9.9652748 L 1.0894562 10.044294 L 1.0891411 16.019447 C 1.0891411 16.586641 0.63245829 17.043869 0.065264831 17.043869 L -0.044003735 17.043622 C -0.6111972 17.043622 -1.068085 16.586764 -1.068085 16.01957 L -1.0681015 10.073289 L -7.0437777 10.152361 C -7.6110212 10.159896 -8.0622227 9.7092481 -8.0546869 9.1420046 L -8.0529876 9.0327231 C -8.0454518 8.4654796 -7.5824836 8.0024816 -7.01524 7.9949458 L -1.068434 7.9159266 L -1.0681189 1.9407736 C -1.0681189 1.6571768 -0.95362558 1.4009139 -0.76857103 1.2158594 z "
+       transform="matrix(-0.69681157,0.71725423,0.70793387,0.70627873,0,0)" />
+  </g>
+</svg>

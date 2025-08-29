@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:slider/global_keys.dart';
 import 'package:slider/widgets/app_background.dart';
 import 'package:slider/widgets/slider_itself.dart';
-import 'package:slider/widgets/background_change_button.dart';
+import 'package:slider/widgets/menu.dart';
 import 'package:slider/widgets/blur_layer.dart';
 
 void main() {
@@ -36,7 +36,7 @@ class AppDisplay extends StatelessWidget {
           SliderItself(key: sliderItselfStateKey),
           Align(
             alignment: Alignment.centerRight,
-            child: BackgroundChangeButton()
+            child: Menu()
           )
         ],
       ),

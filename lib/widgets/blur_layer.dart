@@ -12,6 +12,8 @@ class BlurScreen extends StatefulWidget {
 class BlurScreenState extends State<BlurScreen> {
   double _blurValue = 0.0;
 
+  final String _key = 'blur value';
+
   @override
   void initState() {
     super.initState();
@@ -21,7 +23,7 @@ class BlurScreenState extends State<BlurScreen> {
   Future<void> _loadBlurValue() async {
     final loadedBlurValue = await SharedPreferences.getInstance();
 
-    final savedBlur = loadedBlurValue.getDouble('blurValue') ?? 0.0;
+    final savedBlur = loadedBlurValue.getDouble(_key) ?? 0.0;
 
     setState(() {
       _blurValue = savedBlur;
@@ -31,7 +33,7 @@ class BlurScreenState extends State<BlurScreen> {
   Future<void> _saveBlurValue() async {
     final blurValue = await SharedPreferences.getInstance();
 
-    await blurValue.setDouble('blurValue', _blurValue);
+    await blurValue.setDouble(_key, _blurValue);
   }
 
   Future<void> blurDialog() async {
